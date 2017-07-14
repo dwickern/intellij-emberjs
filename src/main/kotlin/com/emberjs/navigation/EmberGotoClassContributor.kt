@@ -62,6 +62,7 @@ class EmberGotoClassContributor() : ChooseByNameContributor {
         val prefix = file.virtualFile.path.removePrefix(root.path)
 
         return when {
+            root.isInRepoAddon && prefix.startsWith("/app/") -> "(${root.name} app)"
             root.isInRepoAddon -> "(${root.name} addon)"
             prefix.startsWith("/app/") -> null
             prefix.startsWith("/addon/") -> "(addon)"
